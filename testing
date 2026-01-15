@@ -1,0 +1,26 @@
+console.log("You entered the grocery store, which aisle do you wanna go in?")
+              aisleName = prompt(`Enter "1" for Snacks aisle ${grocriesStatus}, Enter "2" for Drinks aisle ${grocriesStatus}, Enter "3" to leave store`) || "0";
+              if (aisleName == "1") {
+                console.log("Which items do you need?")
+                aisle1Food = prompt(`Enter "1" for ice cream, Enter "2" for popcorn, Enter "3" for choclate, Enter "4" for doritos, Enter "5" to leave`) || "0"
+
+                if (aisle1Food == "2") {
+                  console.log("You have grabbed the popcorn needed for the list")
+                  popcorn = true;
+
+                } else if (aisle1Food == "1") {
+                  console.log("You do not need this item")
+
+                } else if (aisle1Food == "3") {
+                  console.log("You have grabbed the chocolate needed for the list")
+                  chocolate = true;
+
+                } else if (aisle1Food == "4") {
+                  console.log("You have grabbed the dorritos needed for the list")
+                  doritos = true;
+
+                } else if (aisle1Food == "5") {
+                  console.log("Going back to grocery store")
+                  inGroceryStore = false;
+                }
+          }

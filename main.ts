@@ -16,8 +16,16 @@ let kitchenChoice: string = "";
 let livingRoomChoice: string = "";
 let outsideChoice: string = "";
 let outsideChoice2: string = "";
+let aisleName: string = "";
+let aisle1Food: string = "";
+let aisle2Food: string = "";
 
 let searchChoice: string = "";
+
+let popcorn: boolean = false;
+let chocolate: boolean = false;
+let doritos: boolean = false;
+let coke: boolean = false;
 
 let money: boolean = false;
 let key: boolean = false;
@@ -55,39 +63,110 @@ if (narrator == "1") {
         // Going outside
         let inOutside: boolean = true;
         while (inOutside) {
-          let grocriesStatus = "";
-          if (grocriesFound) {
-            grocriesStatus = "(COMPLETED)"
-          }
           let friendsStatus = "";
           if (friendsInvited) {
             friendsStatus = "(COMPLETED)"
           }
-          console.log("You went outside: ")
-          outsideChoice = prompt(`Enter "1" to explore the neighboorhood ${friendsStatus}      Enter "2" to go to the grocery store ${grocriesStatus}`) || "0"
-
-        } if (outsideChoice == "1") {
-          console.log("You decide to walk around and you found your friends home.")
-          outsideChoice2 = prompt(`Enter "1" to invite your friends over        Enter "2" to ask them for some money    'Enter "3" to say hello and return back to steert`) || "0";
-          if (outsideChoice2 == "1") {
-            if (friendsInvited == false) {
-              console.log("CONGRATS, you have invited your friends over for the movie night")
-              friendsInvited = true;
-              tasksDone++
-            } else {
-              console.log("Your friends are already at your house waiting!")
-            }
-          } else if (outsideChoice2 == "2") {
-            if (money == false) {
-              console.log("They give you some money!")
-              money = true;
-            } else {
-              console.log("They already gave you enough money")
-            }
-          } else if (outsideChoice2 == "3") {
-            console.log("You say hello and head back.")
+          let groceriesStatus = "";
+          if (grocriesFound) {
+            groceriesStatus = "(COMPLETED)"
           }
+          console.log("You went outside: ")
+          outsideChoice = prompt(`Enter "1" to explore the neighboorhood       Enter "2" to go to the grocery store     Enter "3" to return`) || "0"
+          if (outsideChoice == "1") {
+            console.log("You decide to walk around and you found your friends home.")
+            outsideChoice2 = prompt(`Enter "1" to invite your friends over ${friendsStatus}       Enter "2" to ask them for some money    'Enter "3" to say hello and return back to steert`) || "0";
+            if (outsideChoice2 == "1") {
+              if (friendsInvited == false) {
+                console.log("CONGRATS, you have invited your friends over for the movie night")
+                friendsInvited = true;
+                tasksDone++
+              } else {
+                console.log("Your friends are already at your house waiting!")
+              }
+            } else if (outsideChoice2 == "2") {
+              if (money == false) {
+                console.log("They give you some money!")
+                money = true;
+              } else if(money == true) {
+                console.log("They already gave you enough money")
+              }
+            } else if (outsideChoice2 == "3") {
+              console.log("You say hello and head back.")
+            }
+          } else if (outsideChoice == "2" && money == false) {
+            console.log("You cannot enter, you do not any money on you, go find some.")
+          } 
+          if (outsideChoice == "3") {
+            console.log("Returning:")
+            inOutside = false;
+          }
+          else if (outsideChoice != "1" && outsideChoice != "2" && outsideChoice != "3" ) {
+            console.log("Invalid Response.")
+          }
+
+          else if (outsideChoice2 != "1" && outsideChoice2 != "2" && outsideChoice2 != "3") {
+            console.log("Invalid Response.")
+          }
+          
+          if (outsideChoice == "2")
+            if (money == true) {
+              let inGroceryStore: boolean = true;
+              while (inGroceryStore) {
+                console.log("You entered the grocery store, which aisle do you wanna go in?")
+                aisleName = prompt(`Enter "1" for Snacks aisle ${groceriesStatus}, Enter "2" for Drinks aisle ${groceriesStatus}, Enter "3" to leave store`) || "0";
+                if (aisleName == "1") {
+                  console.log("Which items do you need?")
+                  aisle1Food = prompt(`Enter "1" for ice cream, Enter "2" for popcorn, Enter "3" for choclate, Enter "4" for doritos, Enter "5" to leave`) || "0"
+
+                  if (aisle1Food == "2") {
+                    console.log("You have grabbed the popcorn needed for the list")
+                    popcorn = true;
+
+                  } else if (aisle1Food == "1") {
+                    console.log("You do not need this item")
+
+                  } else if (aisle1Food == "3") {
+                    console.log("You have grabbed the chocolate needed for the list")
+                    chocolate = true;
+
+                  } else if (aisle1Food == "4") {
+                    console.log("You have grabbed the dorritos needed for the list")
+                    doritos = true;
+
+                  } else if (aisle1Food == "5") {
+                    console.log("Going back:")
+                  }
+                } else if (aisleName == "2") {
+                  console.log("Which items do you need?")
+                  aisle2Food = prompt (`Enter "1" for coke, Enter "2" for water, Enter "3" to leave`) || "0";
+
+                  if (aisle2Food == "1") {
+                    console.log("You have grabbed the coke needed for the list")
+                    coke = true;
+                  } else if (aisle2Food == "2") {
+                    console.log("You do not need that item")
+                  } else if (aisle2Food == "3")
+                    console.log("Going back:")
+
+                } if (aisleName == "3") {
+                  console.log("Returning.")
+                  inGroceryStore = false;
+                }
+                
+                else if (aisle1Food != "1" && "2" && "3" && "4" && "5" && aisleName != "1" && "2" && "3" && aisle2Food != "1" && "2" && "3") {
+                  console.log("Invalid Respone.")
+                } 
+                if (popcorn && chocolate && doritos && coke) {
+                  console.log("CONGRATS! You have completed the groceries objective, returning outside.")
+                  inGroceryStore = false;
+                  grocriesFound = true;
+                  tasksDone ++
+                } 
+              }
+            } 
         }
+        
 
 
         // Inside the living room
@@ -118,7 +197,7 @@ if (narrator == "1") {
               remoteFound = true;
               tasksDone++;
             } 
-
+            
 
             // Searching Cushions
           } else if (searchChoice == "2") {
@@ -133,10 +212,10 @@ if (narrator == "1") {
           else if (searchChoice == "3") {
             console.log("Going back to bedroom: ")
             inLivingRoom = false;
-          } 
-        } if (searchChoice != "1" || "2" || "3") {
-          console.log("Invalid choice. please choose something better.")
-        }
+          } else {
+            console.log("Invalid option.")
+          }
+        } 
       } 
       
     
