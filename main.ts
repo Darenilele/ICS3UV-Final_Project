@@ -136,6 +136,8 @@ if (narrator == "1") {
 
                   } else if (aisle1Food == "5") {
                     console.log("Going back:")
+                  } else if (aisle1Food != "1" && "2" && "3" && "4" && "5") {
+                    console.log("Invalid Respone.")
                   }
                 } else if (aisleName == "2") {
                   console.log("Which items do you need?")
@@ -148,7 +150,9 @@ if (narrator == "1") {
                     console.log("You do not need that item")
                   } else if (aisle2Food == "3")
                     console.log("Going back:")
-
+                  else if (aisle2Food != "1" && "2" && "3" && "4" && "5") {
+                    console.log("Invalid Respone.")
+                  }
                 } if (aisleName == "3") {
                   console.log("Returning.")
                   inGroceryStore = false;
